@@ -3,6 +3,7 @@ package com.example.payment.api.service;
 import com.example.payment.api.model.PaymentModel;
 import com.example.payment.api.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class PaymentService {
 
     // Retorna todos os pagamentos
     public List<PaymentModel> getAll() {
-        return paymentRepository.findAll();
+        return paymentRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
     }
 
     // Retorna um pagamento por ID
@@ -25,9 +26,9 @@ public class PaymentService {
         return payment.orElseThrow(() -> new RuntimeException("Payment not found"));
     }
 
-    // Retorna um pagamento por ID
+    // Retorna um pagamento por ID Usuario
     public List<PaymentModel> getByIdUser(Long usuarioId) {
-        List<PaymentModel> payments = paymentRepository.findByUsuarioId(usuarioId);
+        List<PaymentModel> payments = paymentRepository.findByUsuarioId(usuarioId, Sort.by(Sort.Direction.ASC, "id"));
         if (payments.isEmpty()) {
             throw new RuntimeException("No payments found for usuarioId: " + usuarioId);
         }

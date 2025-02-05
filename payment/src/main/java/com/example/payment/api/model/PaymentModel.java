@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "tbl_payment")
-@Getter
+@Getter  //Lombok
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor // Lombok 
+@AllArgsConstructor // Lombok 
 @Builder
 public class PaymentModel {
 

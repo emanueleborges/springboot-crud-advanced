@@ -5,10 +5,13 @@ import com.example.payment.api.service.PaymentService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
 
 import java.util.List;
 
@@ -60,8 +63,13 @@ public class PaymentController {
             @ApiResponse(responseCode = "400", description = "Requisição inválida")
     })
     @PostMapping
-    public PaymentModel createPayment(@RequestBody PaymentModel payment) {
-        return paymentService.createPayment(payment);
+    public ResponseEntity<PaymentModel> createPayment(@RequestBody @Valid PaymentModel payment) {
+        try {
+            PaymentModel createdPayment = paymentService.createPayment(payment);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdPayment);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
     }
 
 

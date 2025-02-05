@@ -84,12 +84,7 @@
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Dependência do Spring Boot Jwt -->
-        <dependency>
-            <groupId>io.jsonwebtoken</groupId>
-            <artifactId>jjwt</artifactId>
-            <version>0.11.5</version> <!-- Alterado para versão 0.11.5 -->
-        </dependency>
+
     </dependencies>
 
     <build>
@@ -151,6 +146,10 @@
         <repository>
             <id>bintray</id>
             <url>https://jcenter.bintray.com/</url>
+        </repository>
+        <repository>
+            <id>spring-releases</id>
+            <url>https://repo.spring.io/release/</url>
         </repository>
     </repositories>
 
