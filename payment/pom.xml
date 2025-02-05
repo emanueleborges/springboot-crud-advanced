@@ -151,6 +151,13 @@
             <id>spring-releases</id>
             <url>https://repo.spring.io/release/</url>
         </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
     </repositories>
 
     <pluginRepositories>
